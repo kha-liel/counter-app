@@ -69,19 +69,20 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     return html`
 <div class="wrapper">
   <h3>${this.count}</h3>
-    <button @click="${this.increment}">+</button>
     <button @click="${this.decrement}">-</button>
+    <button @click="${this.increment}">+</button>
   <slot></slot>
 </div>`;
   }
-
+  
+  decrement() {
+    this.count--;
+  }
+  
   increment() {
     this.count++;
   }
 
-  decrement() {
-    this.count--;
-  }
 
   /**
    * haxProperties integration via file reference
