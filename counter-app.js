@@ -32,6 +32,7 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
         new URL("./locales/counter-app.ar.json", import.meta.url).href +
         "/../",
     });
+    this.count = 0;
   }
 
   // Lit reactive properties
@@ -39,6 +40,7 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
+      count: { type: Number},
     };
   }
 
@@ -66,9 +68,19 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
 <div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
+  <h3>${this.count}</h3>
+    <button @click="${this.increment}">+</button>
+    <button @click="${this.decrement}">-</button>
   <slot></slot>
 </div>`;
+  }
+
+  increment() {
+    this.count++;
+  }
+
+  decrement() {
+    this.count--;
   }
 
   /**
