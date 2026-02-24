@@ -40,7 +40,7 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
-      count: { type: Number},
+      count: { type: Number, reflect: true},
     };
   }
 
@@ -54,6 +54,21 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
       }
+
+      :host([count="18"]) h3 {
+        color: var(--ddd-them-default-original87Pink);
+      }
+      :host([count="21"]) h3 {
+        color: var(--ddd-theme-default-keppel);
+      }
+      :host([count="0"]) h3 {
+        color: var(--ddd-theme-default-creamyPeach);
+      }
+
+    :host([count="25"]) h3 {
+      color: var(--ddd-theme-default-pennBlue);
+    }
+      
       .wrapper {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
@@ -69,8 +84,10 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     return html`
 <div class="wrapper">
   <h3>${this.count}</h3>
-    <button @click="${this.decrement}">-</button>
-    <button @click="${this.increment}">+</button>
+  <div class="button-container">
+    <button @click="${this.decrement}" ?disabled="${this.count === 0}">-</button>
+    <button @click="${this.increment}" ?disabled="${this.count === 25}">+</button>
+  </div>
   <slot></slot>
 </div>`;
   }
