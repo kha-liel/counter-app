@@ -32,8 +32,8 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
         new URL("./locales/counter-app.ar.json", import.meta.url).href +
         "/../",
     });
-    this.count = 0;
-    this.min = 0;
+    this.count = 10;
+    this.min = 10;
     this.max = 25;
   }
 
