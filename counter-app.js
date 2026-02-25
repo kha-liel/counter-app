@@ -64,22 +64,22 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
         padding: var(--ddd-spacing-8);
       }
 
-      // css styling for minimum range
+      /* css styling for minimum range */
       .wrapper.min .counter {
         color: var(--ddd-theme-default-creekTeal);
       }
 
-      // css styling for mid range
+      /* css styling for mid range */
       .wrapper.mid .counter {
         color: var(--ddd-theme-default-original87Pink);
       }
 
-      // css styling for high range
+      /* css styling for high range */
       .wrapper.high .counter {
         color: var(--ddd-theme-default-keystoneYellow);
       }
 
-      // css styling for max number
+      /* css styling for max number */
       .wrapper.max .counter {
         color: var(--ddd-theme-default-pughBlue);
       }
