@@ -126,14 +126,16 @@ getCounterRange() {
   // Lit render the HTML
   render() {
     return html`
-      <div class="wrapper ${this.getCounterRange()}">
-        <div class="counter">${this.count}</div>
-        <div class="button-container">
-          <button @click="${this.decrement}" ?disabled="${this.count === this.min}">-</button>
-          <button @click="${this.increment}" ?disabled="${this.count === this.max}">+</button>
+      <confetti-container id="confetti">
+        <div class="wrapper ${this.getCounterRange()}">
+          <div class="counter">${this.count}</div>
+          <div class="button-container">
+            <button @click="${this.decrement}" ?disabled="${this.count === this.min}">-</button>
+            <button @click="${this.increment}" ?disabled="${this.count === this.max}">+</button>
+          </div>
+          <slot></slot>
         </div>
-        <slot></slot>
-      </div>`;
+      </confetti-container>`;
   }
   
   decrement() {
@@ -153,8 +155,11 @@ updated(changedProperties) {
   if (super.updated) {
     super.updated(changedProperties);
   }
-  if (changedProperties.has('counter')) {
+  if (changedProperties.has('count')) {
     // do your testing of the value and make it rain by calling makeItRain
+    if (this.count === 21) {
+      this.makeItRain();
+    }
   }
 }
 
