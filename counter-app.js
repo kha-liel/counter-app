@@ -130,8 +130,8 @@ getCounterRange() {
         <div class="wrapper ${this.getCounterRange()}">
           <div class="counter">${this.count}</div>
           <div class="button-container">
-            <button @click="${this.decrement}" ?disabled="${this.count === this.min}">-</button>
-            <button @click="${this.increment}" ?disabled="${this.count === this.max}">+</button>
+            <button @click="${this.decrement}" ?disabled="${this.count === this.min}" title="Decrement Count">-</button>
+            <button @click="${this.increment}" ?disabled="${this.count === this.max}" title="Increment Count">+</button>
           </div>
           <slot></slot>
         </div>
