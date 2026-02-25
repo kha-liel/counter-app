@@ -64,18 +64,22 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
         padding: var(--ddd-spacing-8);
       }
 
+      // css styling for minimum range
       .wrapper.min .counter {
         color: var(--ddd-theme-default-creekTeal);
       }
 
+      // css styling for mid range
       .wrapper.mid .counter {
         color: var(--ddd-theme-default-original87Pink);
       }
 
+      // css styling for high range
       .wrapper.high .counter {
         color: var(--ddd-theme-default-keystoneYellow);
       }
 
+      // css styling for max number
       .wrapper.max .counter {
         color: var(--ddd-theme-default-pughBlue);
       }
@@ -110,7 +114,7 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     `];
   }
 
-
+// set a color range so that it can be accessed in css styling
 getCounterRange() {
   if (this.count === this.max) return 'max';
   if (this.count >= 21) return 'high';
