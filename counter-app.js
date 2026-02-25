@@ -55,19 +55,6 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
       :host {
         display: block;
       }
-
-      /*:host([count="18"]) h3 {
-        color: var(--ddd-them-default-original87Pink);
-      }
-      :host([count="21"]) h3 {
-        color: var(--ddd-theme-default-keppel);
-      }
-      :host([count="0"]) h3 {
-        color: var(--ddd-theme-default-creamyPeach);
-      }
-      :host([count="25"]) h3 {
-        color: var(--ddd-theme-default-pennBlue);
-      }*/
       
       .wrapper {
         display: flex;
@@ -75,6 +62,22 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
         align-items: center;
         margin: var(--ddd-spacing-4);
         padding: var(--ddd-spacing-8);
+      }
+
+      .wrapper.min .counter {
+        color: var(--ddd-theme-default-creekTeal);
+      }
+
+      .wrapper.mid .counter {
+        color: var(--ddd-theme-default-original87Pink);
+      }
+
+      .wrapper.high .counter {
+        color: var(--ddd-theme-default-keystoneYellow);
+      }
+
+      .wrapper.max .counter {
+        color: var(--ddd-theme-default-pughBlue);
       }
 
       .counter {
@@ -107,33 +110,38 @@ export class CounterApp extends DDDSuper(I18NMixin(LitElement)) {
     `];
   }
 
-counterColor() {
-  if (this.count === 18) return 'var(--ddd-theme-default-Original87Pink)';
-  if (this.count === 21) return 'var(--ddd-theme-default-keppel)';
-  if (this.count === this.min) return 'var(--ddd-theme-default-creamyPeach)';
-  if (this.count === this.max) return 'var(--ddd-theme-default-pennBlue)';
-  return inherit;
+
+getCounterRange() {
+  if (this.count === this.max) return 'max';
+  if (this.count >= 21) return 'high';
+  if (this.count >= 18) return 'mid';
+  if (this.count < 18) return 'min';
+  return 'default';
 }
 
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <div class="counter" style = "color: ${this.counterColor}">${this.count}</div>
-  <div class="button-container">
-    <button @click="${this.decrement}" ?disabled="${this.count === this.min}">-</button>
-    <button @click="${this.increment}" ?disabled="${this.count === this.max}">+</button>
-  </div>
-  <slot></slot>
-</div>`;
+      <div class="wrapper ${this.getCounterRange()}">
+        <div class="counter">${this.count}</div>
+        <div class="button-container">
+          <button @click="${this.decrement}" ?disabled="${this.count === this.min}">-</button>
+          <button @click="${this.increment}" ?disabled="${this.count === this.max}">+</button>
+        </div>
+        <slot></slot>
+      </div>`;
   }
   
   decrement() {
+    if (this.count > this.min) {
     this.count--;
+    }
   }
   
   increment() {
+    if (this.count < this.max) {
     this.count++;
+    }
   }
 
 
